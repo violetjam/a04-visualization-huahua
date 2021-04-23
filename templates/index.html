@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>A04旅客付费选座意愿识别可视化</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/app.css" />
+	</head>
+
+	<body class="bg01">
+		<header id="header">
+			<h3 class="header-title">A04旅客付费选座意愿识别可视化</h3>
+			<div class="header-info header-info-l">数据来源：赛题官网提供</div>
+			<div class="header-info header-info-r">数据日期：<span id="nowDate"></span></div>
+		</header>
+        <div id="container">
+			<div id="flexCon">
+                <div class="flex-row1">
+                    <div class="chart-wrapper">
+							<div class="chart-done">
+
+								<table class="data-t" style="margin-top: 30px;margin-left: auto;margin-right: auto">
+									<tr >
+                                        <td><h3 class="chart-title" style="font-size: 32px">统计数据</h3></td>
+										<th><img src="../static/img/icon-01.png" /></th>
+										<td>
+											<p><span id="records">0</span></p>
+											<p>总记录数</p>
+										</td>
+										<th><img src="../static/img/icon-05.png" /></th>
+										<td>
+											<p><span id="features">0</span></p>
+											<p>特征因子字段数</p>
+										</td>
+                                        <th><img src="../static/img/icon-02.png" /></th>
+                                        <td>
+											<p><span id="selects">0</span></p>
+											<p>筛选字段数</p>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+				</div>
+
+			</div>
+		</div>
+        <div class="wrapper">
+			<div class="container-fluid">
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">模型性能评价指标</h3>
+                                <table class="data-t data-t-2" style="margin-top: 10px;margin-left: auto;margin-right: auto">
+									<tr >
+                                        <td><h3 class="chart-title" style="font-size: 22px">准确度：</h3></td>
+										<th><img src="../static/img/icon-06.png" /></th>
+										<td>
+											<p><span id="test_accuracy">0</span>%</p>
+											<p>测试集准确度</p>
+										</td>
+										<th><img src="../static/img/icon-07.png" /></th>
+										<td>
+											<p><span id="practise_accuracy">0</span>%</p>
+											<p>训练集准确度</p>
+										</td>
+									</tr>
+								</table>
+
+                                <div class="detailbox">
+									<table class="detail" style="margin-top: 5px;">
+										<caption>测试集详细评价指标</caption>
+										<tr>
+											<th>详细指标</th>
+											<th>precision</th>
+											<th>recall</th>
+											<th>score</th>
+											<th>support</th>
+										</tr>
+										<tr>
+											<td>无付费选座</td>
+											<td>0.51</td>
+											<td>0.81</td>
+											<td>0.63</td>
+											<td>2444</td>
+										</tr>
+										<tr>
+											<td>付费选座</td>
+											<td>0.88</td>
+											<td>0.65</td>
+											<td>0.75</td>
+											<td>5424</td>
+										</tr>
+										<tr>
+											<td>accuracy</td>
+											<td>/</td>
+											<td>/</td>
+											<td>0.70</td>
+											<td>7868</td>
+										</tr>
+										<tr>
+											<td>macro avg</td>
+											<td>0.70</td>
+											<td>0.73</td>
+											<td>0.69</td>
+											<td>7868</td>
+										</tr>
+										<tr>
+											<td>weighted avg</td>
+											<td>0.77</td>
+											<td>0.70</td>
+											<td>0.71</td>
+											<td>7868</td>
+										</tr>
+
+									</table>
+									<table class="detail" style="margin-top: 5px;">
+										<caption>训练集详细评价指标</caption>
+										<tr>
+											<th>详细指标</th>
+											<th>precision</th>
+											<th>recall</th>
+											<th>score</th>
+											<th>support</th>
+										</tr>
+										<tr>
+											<td>无付费选座</td>
+											<td>0.51</td>
+											<td>0.81</td>
+											<td>0.63</td>
+											<td>9923</td>
+										</tr>
+										<tr>
+											<td>付费选座</td>
+											<td>0.88</td>
+											<td>0.64</td>
+											<td>0.74</td>
+											<td>21547</td>
+										</tr>
+										<tr>
+											<td>accuracy</td>
+											<td>/</td>
+											<td>/</td>
+											<td>0.69</td>
+											<td>31470</td>
+										</tr>
+										<tr>
+											<td>macro avg</td>
+											<td>0.70</td>
+											<td>0.73</td>
+											<td>0.68</td>
+											<td>31470</td>
+										</tr>
+										<tr>
+											<td>weighted avg</td>
+											<td>0.76</td>
+											<td>0.69</td>
+											<td>0.71</td>
+											<td>31470</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+								<h3 class="chart-title">旅客名单付费按付费意愿程度排序图</h3>
+                                <div class="chart-div" id="chartr2">
+                                    <div class="chart-loader"><div class="loader"></div></div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">筛选出的特征因子</h3>
+                                <div class="chart-div" id="chartl3">
+                                    <div class="chart-loader"><div class="loader"></div></div>
+                                </div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+								<h3 class="chart-title">特征因子重要性排序图</h3>
+                                <div class="chart-div" id="chartr3">
+                                    <div class="chart-loader"><div class="loader"></div></div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row fill-h">
+					<div class="fill-h" style="width: 60%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<!-- 地图飞线 -->
+                                <h3 class="chart-title ">飞行航线图</h3>
+								<div class="fill-h" id="flyMap"></div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 40%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">目的地(seg_route_to)与付费选座意愿占比饼图</h3>
+								<div class="fill-h" id="chartr4"></div>
+							</div>
+						</div>
+                    </div>
+				</div>
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">舱位(select_seat_cnt)与是否付费选座关系图</h3>
+								<div class="fill-h" id="chartl5"></div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">舱位(select_seat_cnt)与付费选座意愿占比饼图</h3>
+								<div class="fill-h" id="chart5"></div>
+							</div>
+						</div>
+                    </div>
+				</div>
+                <div class="row fill-h">
+                     <div class="fill-h" style="width: 100%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+                                <h3 class="chart-title ">最近Y年优选座位次数(seg_cabin)与付费选座占比关系</h3>
+								<div class="fill-h" id="chart6"></div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="row fill-h">
+                     <div class="fill-h" style="width: 100%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+                                <h3 class="chart-title ">最近3年常飞航线(pref_line)与付费选座占比关系</h3>
+								<div class="fill-h" id="chart7"></div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">最近2年出发城市次数最多的城市(select_seat_cnt)付费选座人数热力图</h3>
+								<div class="fill-h" id="chartl9"></div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">最近3年出发城市次数最多的城市(select_seat_cnt)付费选座人数热力图</h3>
+								<div class="fill-h" id="chartr9"></div>
+							</div>
+						</div>
+                    </div>
+				</div>
+            </div>
+
+		</div>
+</div>
+
+		<script type="text/javascript" src="../static/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../static/js/countUp.min.js"></script>
+		<script type="text/javascript" src="../static/js/echarts.min.js"></script>
+		<script type="text/javascript" src="../static/js/echarts-map-world.js"></script>
+		<script type="text/javascript" src="../static/js/echarts-map-china.js"></script>
+		<script type="text/javascript" src="../static/js/echarts-theme-shine.js"></script>
+
+        <script type="text/javascript">
+
+			$(function() {
+                //获取当天日期
+                (function () {
+                    const now = new Date();
+                    const year = now.getFullYear();
+                    const month = now.getMonth() + 1;
+                    const day = now.getDate();
+                    $("#nowDate").html(year + "年" + month + "月" + day + "日");
+                })();
+
+                //获取统计数据
+                $.ajax({
+                    type: 'get',
+                    url: "../static/data/count-data.json",
+                    dataType: "json"
+                }).done(function (data) {
+                    //console.log('Data: ', data);
+                    rollNum("records", 0, data.count_records);
+                    rollNum("features", 0, data.count_features);
+                    rollNum("selects", 0, data.count_selects);
+                    rollNum("test_accuracy", 0, data.test_accuracy,2);
+                    rollNum("practise_accuracy", 0, data.practise_accuracy,2);
+                }).fail(function (jqXHR, textStatus) {
+                    console.log("Ajax Error: ", textStatus);
+                });
+            });
+
+			//数字变化特效
+			function rollNum(elId, startVal, endVal, decimalNum) {
+				let n = decimalNum || 0;
+				let countUp = new CountUp(elId, startVal, endVal, n, 2.5, {
+					useEasing: true,
+					useGrouping: true,
+					separator: ',',
+					decimal: '.'
+				});
+				if(!countUp.error) {
+				    countUp.start();
+				}else {
+				    console.error(countUp.error);
+				}
+			}
+
+        </script>
+        <script type="text/javascript">
+                const chartr2 = echarts.init(document.getElementById("chartr2"), "shine");
+                const Opt_chartr2 = {
+                    // type的slider和inside可以同时保留，既可以保留滚动条，也可以在内部拖动
+                    dataZoom: [
+
+                        //3.纵向使用滚动条
+                        {
+                            type: 'slider',
+                            show: true,
+                            yAxisIndex: [0],//设置组件控制的y轴
+                            left: '98%',//距离左侧的距离 可以使百分比，也可以是像素 left: '30'（30像素）
+                            start: -2,
+                            end: 0.5
+                        },
+                        //4.在内部可以纵向拖动
+                        {
+                            type: 'inside',
+                            yAxisIndex: [0],
+                            start: -2,
+                            end: 0.5
+                        }
+                    ],
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: {
+                            type: "shadow"
+                        },
+                        formatter: function (params) {
+                            const param = params[0];
+                            const marker = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#e6b600;"></span>';
+                            const suffix = '<span style="margin-left:5px;font-size:12px;"></span>';
+                            return param.name + "<br />" +
+                                marker + "排名：" + (param.dataIndex + 1) + "<br />" +
+                                marker + "付费选座意愿：" + param.value + suffix;
+                        }
+                    },
+                    grid: {
+                        top: 10,
+                        bottom: 10,
+                        left: 100
+                    },
+                    xAxis: {
+                        show: false,
+                        type: "value"
+                    },
+                    yAxis: {
+                        type: "category",
+                        inverse: true,
+                        axisLine: {show: false},
+                        axisTick: {show: false},
+                        axisLabel: {
+                            fontSize: 12,
+                            color: "#b0c2f9",
+                            formatter: function (params) {
+                                var val = "";
+                                if (params.length > 10) {
+                                    val = params.substr(0, 9) + '...';
+                                    return val;
+                                } else {
+                                    return params;
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: "付费意愿程度排行",
+                        type: "bar",
+                        barCategoryGap: "60%",
+                        label: {
+                            show: true,
+                            position: "right",
+                            fontSize: 12,
+                            color: "#188df0",
+                            emphasis: {
+                                color: "#e6b600"
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 1, 1, 1,
+                                    [
+                                        {offset: 0, color: '#b0c2f9'},
+                                        {offset: 0.5, color: '#188df0'},
+                                        {offset: 1, color: '#185bff'}
+                                    ]
+                                )
+                            },
+                            emphasis: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 1, 1, 1,
+                                    [
+                                        {offset: 0, color: '#b0c2f9'},
+                                        {offset: 0.7, color: '#e6b600'},
+                                        {offset: 1, color: '#ceac09'}
+                                    ]
+                                )
+                            }
+                        }
+                    }]
+                };
+                chartr2.setOption(Opt_chartr2);
+                $.ajax({
+                    url: "/r2",
+                    dataType: "json",
+                    timeout: 10000
+                }).done(function () {
+                    $("#rankChartr2").addClass("chart-done");
+                }).done(function (data) {
+                    Opt_chartr2.yAxis.data = data.keys
+                    Opt_chartr2.series[0].data = data.values
+
+                    chartr2.setOption(Opt_chartr2);
+                }).fail(function (jqXHR) {
+                    console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+                });
+
+        </script>
+        <script type="text/javascript">
+
+            //l3
+            var chartl3 = echarts.init(document.getElementById('chartl3'));
+            var Opt_chartl3;
+
+            Opt_chartl3 = {
+                grid: {
+                    left: "10%",
+                    bottom: "20%",
+                },
+                tooltip: {
+						trigger: "axis",
+						axisPointer: {
+							type: "shadow"
+						},
+						formatter: function(params) {
+							const param = params[0];
+							const marker = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#e6b600;"></span>';
+							const suffix = '<span style="margin-left:5px;font-size:12px;"></span>';
+							return param.name + "<br />" +
+								marker + "排名：" + (param.dataIndex+1) + "<br />" +
+								marker + "重要性：" + param.value + suffix;
+						}
+					},
+                xAxis: {
+                    type: 'category',
+                    name:'特征名称',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu'],
+					axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    axisTick: {show: false},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+                        rotate: 38,
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: "重要性",
+                    splitNumber: 5,
+                    axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    splitLine: {show: false},
+                    axisTick: {color: "#b0c2f9"},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                },
+                series: [
+                    {
+                        type: 'bar',
+                        showBackground: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83bff6'},
+                                    {offset: 0.5, color: '#188df0'},
+                                    {offset: 1, color: '#188df0'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2378f7'},
+                                        {offset: 0.7, color: '#2378f7'},
+                                        {offset: 1, color: '#83bff6'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    }
+                ]
+            };
+            Opt_chartl3 && chartl3.setOption(Opt_chartl3);
+            $.ajax({
+					url: "/l3",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chartl3").addClass("chart-done");
+				}).done(function(data) {
+                    chartl3.setOption({
+                        xAxis: {
+                            data: data.keys,
+                        },
+                        series: [{
+                            name: "重要性",
+                            data: data.values
+                        }]
+                    });
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            /********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					charl3.resize();
+				}
+
+        </script>
+        <script type="text/javascript">
+
+            //r3
+				const chartr3 = echarts.init(document.getElementById("chartr3"), "shine");
+				const Opt_chartr3 = {
+				    // type的slider和inside可以同时保留，既可以保留滚动条，也可以在内部拖动
+                    dataZoom : [
+
+                         //3.纵向使用滚动条
+                            {
+                                type: 'slider',
+                                show: true,
+                                yAxisIndex: [0],//设置组件控制的y轴
+                                left: '96%',//距离左侧的距离 可以使百分比，也可以是像素 left: '30'（30像素）
+                                start: -2,
+                                end: 5
+                            },
+                         //4.在内部可以纵向拖动
+                            {
+                                type: 'inside',
+                                yAxisIndex: [0],
+                                start: -2,
+                                end: 5
+                            }
+                            ],
+					tooltip: {
+						trigger: "axis",
+						axisPointer: {
+							type: "shadow"
+						},
+						formatter: function(params) {
+							const param = params[0];
+							const marker = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#e6b600;"></span>';
+							const suffix = '<span style="margin-left:5px;font-size:12px;"></span>';
+							return param.name + "<br />" +
+								marker + "排名：" + (param.dataIndex+1) + "<br />" +
+								marker + "重要性：" + param.value + suffix;
+						}
+					},
+					grid: {
+						top: 10,
+						bottom: 10,
+						left: 130
+					},
+					xAxis: {
+						show: false,
+						type: "value"
+					},
+					yAxis: {
+						type: "category",
+						inverse: true,
+						axisLine: {show: false},
+						axisTick: {show: false},
+						axisLabel: {
+							fontSize: 12,
+							color: "#b0c2f9"
+						}
+					},
+					series: [{
+						name: "付费意愿程度排行",
+						type: "bar",
+						barCategoryGap: "60%",
+						label: {
+							show: true,
+							position: "right",
+							fontSize: 12,
+							color: "#43d0d6",
+							emphasis: {
+								color: "#e6b600"
+							}
+						},
+						itemStyle: {
+			                normal: {
+			                    color: new echarts.graphic.LinearGradient(
+			                        0, 1, 1, 1,
+			                        [
+			                            {offset: 0, color: '#b0c2f9'},
+			                            {offset: 0.5, color: '#6cced7'},
+			                            {offset: 1, color: '#43d0d6'}
+			                        ]
+			                    )
+			                },
+			                emphasis: {
+			                    color: new echarts.graphic.LinearGradient(
+			                        0, 1, 1, 1,
+			                        [
+			                            {offset: 0, color: '#b0c2f9'},
+			                            {offset: 0.7, color: '#e6b600'},
+			                            {offset: 1, color: '#ceac09'}
+			                        ]
+			                    )
+			                }
+			            }
+					}]
+				};
+				chartr3.setOption(Opt_chartr3);
+				$.ajax({
+					url: "/r3",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chartr3").addClass("chart-done");
+				}).done(function(data) {
+                    Opt_chartr3.yAxis.data=data.keys
+                    Opt_chartr3.series[0].data=data.values
+
+                    chartr3.setOption(Opt_chartr3);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+
+				//浏览器窗口大小变化时，重置报表大小
+				$(window).resize(function() {
+					chartr3.resize();
+
+				});
+
+
+        </script>
+        <script type="text/javascript">
+
+			$(function() {
+				/******************* 地图飞线 ******************/
+				//初始化echarts实例
+				const flyMap = echarts.init(document.getElementById("flyMap"));
+		        //城市经纬度
+		        const originName = '上海';
+		        const flyGeo = {
+		            'New York': [-73.4644,40.3823],
+		            'Sydney': [151.1038,-33.5646],
+		            'California': [-118.15,34.04],
+		            '上海': [121.4692688, 31.23817635],
+		        };
+		        //飞线数据
+		        var flyVal = [
+		            [{name: '上海', value: 100},{name: '上海'}],
+		            [{name: 'New York', value: 90},{name: '上海'}],
+		            [{name: 'California', value: 62},{name: '上海'}],
+		            [{name: 'Sydney', value: 31},{name: '上海'},],
+		        ];
+		        const convertFlyData = function(data) {
+		            let res = [];
+		            for(let i=0;i<data.length;i++) {
+		                let dataItem = data[i];
+		                let toCoord = flyGeo[dataItem[0].name];
+		                let fromCoord = flyGeo[dataItem[1].name];
+		                if(fromCoord && toCoord) {
+		                    res.push({
+		                        fromName: dataItem[1].name,
+		                        toName: dataItem[0].name,
+		                        coords: [fromCoord, toCoord]
+		                    });
+		                }
+		            }
+		            return res;
+		        };
+		        //报表配置
+		        const flySeries = [];
+		        [[originName,flyVal]].forEach(function(item, i) {
+					flySeries.push({
+				        name: item[0],
+				        type: 'lines',
+				        zlevel: 1,
+				        symbol: ['none', 'none'],
+				        symbolSize: 0,
+				        effect: { //特效线配置
+				            show: true,
+				            period: 5, //特效动画时间，单位s
+				            trailLength: 0.1, //特效尾迹的长度，从0到1
+				            symbol: 'arrow',
+				            symbolSize: 5
+				        },
+				        lineStyle: {
+				            normal: {
+				                color: '#fff',
+				                width: 1,
+				                opacity: 0.6,
+				                curveness: 0.2 //线的平滑度
+				            }
+				        },
+				        data: convertFlyData(item[1])
+				    }, {
+				        name: item[1],
+				        type: 'effectScatter',
+				        coordinateSystem: 'geo',
+				        zlevel: 2,
+				        rippleEffect: { //涟漪特效
+				            period: 5, //特效动画时长
+				            scale: 4, //波纹的最大缩放比例
+				            brushType: 'stroke' //波纹的绘制方式：stroke | fill
+				        },
+				        label: {
+				            normal: {
+				                show: false,
+				                position: 'right',
+				                formatter: '{b}'
+				            }
+				        },
+				        symbol: 'circle',
+				        symbolSize: function (val) {
+				        	//根据某项数据值设置符号大小
+				            return val[2] / 10;
+				        },
+				        itemStyle: {
+				            normal: {
+				            	color: '#fff'
+				            }
+				        },
+				        data: item[1].map(function(dataItem) {
+				            return {
+				                name: dataItem[0].name,
+				                value: flyGeo[dataItem[0].name].concat([dataItem[0].value])
+				            };
+				        })
+				    }, { //与上层的点叠加
+				    	name: item[1],
+				        type: 'scatter',
+				        coordinateSystem: 'geo',
+				        zlevel: 3,
+				        symbol: 'circle',
+				        symbolSize: function (val) {
+				        	//根据某项数据值设置符号大小
+				            return val[2] / 15;
+				        },
+				        itemStyle: {
+				            normal: {
+				            	color: '#fff'
+				            }
+				        },
+				        data: item[1].map(function(dataItem) {
+				            return {
+				                name: dataItem[0].name,
+				                value: flyGeo[dataItem[0].name].concat([dataItem[0].value])
+				            };
+				        })
+				    });
+		        });
+
+				//报表配置项
+				const flyMapOpt = {
+					title: {
+						show: false,
+						text: '地图飞线',
+						x: 'center',
+						textStyle: {
+							color: '#fff'
+						}
+					},
+	                tooltip: {
+	                    trigger: 'item',
+	                    formatter: function(params) {
+	                        switch (params.name){
+	                            case '上海':
+	                                return '出发地：上海';
+                                case 'New York':
+                                    return '肯尼迪国际机场(JFK)</br>占比：90%';
+                                case 'California':
+                                    return '洛杉矶国际机场(LAX)</br>占比：62%';
+                                case 'Sydney':
+                                    return '悉尼金斯福德·史密斯国际机场(SYD)</br>占比：31%';
+                            }
+	                    }
+	                },
+				    geo: {
+				        map: 'world',
+				        roam: false, //开启鼠标缩放和漫游
+				        zoom: 1.5, //地图缩放级别
+						selectedMode: false, //选中模式：single | multiple
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+						layoutCenter: ['50%', '50%'], //设置后left/right/top/bottom等属性无效
+						layoutSize: '100%', //保持地图宽高比
+				        label: {
+				            emphasis: {
+				                show: false
+				            }
+				        },
+				        itemStyle: {
+				            normal: {
+				                areaColor: '#101f32',
+				                borderWidth: 1.1,
+				                borderColor: 'rgb(94,192,255)'
+				            },
+				            emphasis: {
+				                areaColor: '#006699'
+				            }
+				        }
+				    },
+				    series: flySeries
+				};
+				//渲染报表
+				flyMap.setOption(flyMapOpt);
+
+				/********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					flyMap.resize();
+				}
+			});
+
+        </script>
+        <script type="text/javascript">
+
+            var chartr4 = echarts.init(document.getElementById('chartr4'));
+            var Opt_chartr4;
+            Opt_chartr4 = {
+                 tooltip: {
+						trigger: "item",
+						formatter: "{b0}<br />占比：{d0}%"
+                 },
+                legend: {
+                    textStyle: {
+                      color: "#ffffff"
+                    },
+                    orient: 'vertical',
+                    left: 'left',
+                },
+                series: [
+                    {
+                        name: '占比',
+                        type: 'pie',
+                        radius: '50%',
+                        itemStyle:{
+                           normal: {
+                             color:function(params){
+                                     let colorList=[
+                                      '#f3b7c8', '#86f5eb', '#a8ace3', '#e3c29b', '#FF0000', '#FE8463',
+                                     ];
+                               return colorList[params.dataIndex]
+                               },
+                                  shadowBlur: 200,
+                                   shadowColor: 'rgba(0, 0, 0, 0.5)'
+
+                           },
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            Opt_chartr4 && chartr4.setOption(Opt_chartr4);
+                $.ajax({
+					url: "/r4",
+					dataType: "json"
+				}).done(function(data) {
+					const chartData = [];
+					for(let i in data.keys) {
+						chartData.push({
+							name: data.keys[i],
+							value: data.values[i]
+						});
+					}
+					chartr4.setOption({
+						series: [{
+							name: "占比",
+							data: chartData
+						}]
+					});
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            /********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					chartr4.resize();
+				}
+
+        </script>
+        <script type="text/javascript">
+
+            var chart5 = echarts.init(document.getElementById('chart5'));
+            var Opt_chart5;
+            Opt_chart5 = {
+                 tooltip: {
+						trigger: "item",
+						formatter: "{b0}<br />占比：{d0}%"
+                 },
+                legend: {
+                    textStyle: {
+                      color: "#ffffff"
+                    },
+                    orient: 'vertical',
+                    left: 'left',
+                },
+                series: [
+                    {
+                        name: '占比',
+                        type: 'pie',
+                        radius: '50%',
+                        itemStyle:{
+                           normal: {
+                             color:function(params){
+                                     let colorList=[
+                                      '#f3b7c8', '#86f5eb', '#a8ace3', '#e3c29b',
+                                         '#4566e2', '#ff8162','#59865a','#c29ac7'
+                                     ];
+                               return colorList[params.dataIndex]
+                               },
+                                  shadowBlur: 200,
+                                   shadowColor: 'rgba(0, 0, 0, 0.5)'
+
+                           },
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            Opt_chart5 && chart5.setOption(Opt_chart5);
+                $.ajax({
+					url: "/5",
+					dataType: "json"
+				}).done(function(data) {
+					const chartData = [];
+					for(let i in data.keys) {
+						chartData.push({
+							name: data.keys[i],
+							value: data.values[i]
+						});
+					}
+					chart5.setOption({
+						series: [{
+							name: "占比",
+							data: chartData
+						}]
+					});
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            /********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					chartl4.resize();
+					chart5.resize();
+				}
+        </script>
+        <script type="text/javascript">
+
+            var chartl5 = echarts.init(document.getElementById('chartl5'));
+            var Opt_chartl5;
+
+            Opt_chartl5 = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    textStyle: {
+                      color: "#ffffff"
+                    },
+                    data: ['总人数', '付费选座人数']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        magicType: {show: true, type: ['line', 'bar']},
+                    }
+                },
+                calculable: true,
+                xAxis: {
+                    type: 'category',
+                    name:'舱位编号',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu'],
+					axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                },
+                yAxis: [{
+                    type: 'value',
+                    name: "总数",
+                    splitNumber: 5,
+                    axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    splitLine: {show: false},
+                    axisTick: {color: "#b0c2f9"},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                },{
+                    type: 'value',
+                    name: "付费选座人数",
+                    splitNumber: 5,
+                    axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    splitLine: {show: false},
+                    axisTick: {color: "#b0c2f9"},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                }],
+                series: [
+                    {
+                        name:'总人数',
+                        type: 'bar',
+                        showBackground: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83bff6'},
+                                    {offset: 0.5, color: '#188df0'},
+                                    {offset: 1, color: '#188df0'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2378f7'},
+                                        {offset: 0.7, color: '#2378f7'},
+                                        {offset: 1, color: '#83bff6'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    },{
+                        name:'付费选座人数',
+                        type: 'bar',
+                        showBackground: true,
+                        yAxisIndex: 1,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83f6e9'},
+                                    {offset: 0.5, color: '#18f0d0'},
+                                    {offset: 1, color: '#18f0de'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#23f7c6'},
+                                        {offset: 0.7, color: '#23f0f7'},
+                                        {offset: 1, color: '#83ecf6'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    }
+                ]
+            };
+            Opt_chartl5 && chartl5.setOption(Opt_chartl5);
+            $.ajax({
+					url: "/l5_1",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chartl5").addClass("chart-done");
+				}).done(function(data) {
+                    Opt_chartl5.xAxis.data=data.keys
+                    Opt_chartl5.series[1].data=data.values
+                    chartl5.setOption(Opt_chartl5);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            $.ajax({
+					url: "/l5_2",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chartl5").addClass("chart-done");
+				}).done(function(data) {
+                    Opt_chartl5.series[0].data=data.values
+                    chartl5.setOption(Opt_chartl5);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            /********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					chartl5.resize();
+				}
+
+        </script>
+        <script type="text/javascript">
+
+            var chart6 = echarts.init(document.getElementById('chart6'));
+            var Opt_chart6;
+
+            Opt_chart6 = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    textStyle: {
+                      color: "#ffffff"
+                    },
+                    data: ['最近2年', '最近3年']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        magicType: {show: true, type: ['line', 'bar']},
+                    }
+                },
+                calculable: true,
+                xAxis: {
+                    name:'优选座位次数',
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+					axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    axisTick: {show: false},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+                        formatter: (value, index) => {
+                            return value + "次";
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: "占比",
+                    splitNumber: 5,
+                    axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    splitLine: {show: false},
+                    axisTick: {color: "#b0c2f9"},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                },
+                series: [{
+                    name:'最近2年',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    type: 'line',
+                    smooth: true,
+                    lineStyle:{
+                        color:'#83bff6'
+                    }
+                },{
+                    name:'最近3年',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    type: 'line',
+                    smooth: true,
+                    lineStyle:{
+                        color:'#eef683'
+                    }
+                }]
+            };
+
+            Opt_chart6 && chart6.setOption(Opt_chart6);
+
+            $.ajax({
+                url: "/6_y2",
+                dataType: "json"
+            }).done(function(data) {
+                console.log('Data: ', data);
+
+                //Opt_chart6.xAxis.data=data.keys
+                Opt_chart6.series[0].data=data.values
+                chart6.setOption(Opt_chart6);
+            }).fail(function(jqXHR) {
+                console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+            });
+            $.ajax({
+                url: "/6_y3",
+                dataType: "json"
+            }).done(function(data) {
+                console.log('Data: ', data);
+                Opt_chart6.xAxis.data=data.keys
+                Opt_chart6.series[1].data=data.values
+                chart6.setOption(Opt_chart6);
+            }).fail(function(jqXHR) {
+                console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+            });
+            /********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					chart6.resize();
+				}
+
+        </script>
+        <script type="text/javascript">
+
+            var chart7 = echarts.init(document.getElementById('chart7'));
+            var Opt_chart7;
+
+            Opt_chart7 = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    textStyle: {
+                      color: "#ffffff"
+                    },
+                    data: ['第一意愿', '第二意愿','第三意愿','第四意愿']
+                },
+                calculable: true,
+                xAxis: {
+                    type: 'category',
+                    name:'航线编号',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu'],
+					axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: "付费意愿占比",
+                    splitNumber: 1,
+                    axisLine: {
+                        lineStyle: {color: "#b0c2f9"}
+                    },
+                    splitLine: {show: false},
+                    axisTick: {color: "#b0c2f9"},
+                    axisLabel: {
+                        fontSize: 12,
+                        color: "#b0c2f9",
+
+                    }
+                },
+                series: [
+                    {
+                        name:'第一意愿',
+                        type: 'line',
+                        showBackground: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83bff6'},
+                                    {offset: 0.5, color: '#188df0'},
+                                    {offset: 1, color: '#188df0'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2378f7'},
+                                        {offset: 0.7, color: '#2378f7'},
+                                        {offset: 1, color: '#83bff6'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    },
+                    {
+                        name:'第二意愿',
+                        type: 'line',
+                        showBackground: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83f6e9'},
+                                    {offset: 0.5, color: '#18f0d0'},
+                                    {offset: 1, color: '#18f0de'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#23f7c6'},
+                                        {offset: 0.7, color: '#23f0f7'},
+                                        {offset: 1, color: '#83ecf6'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    },
+                    {
+                        name:'第三意愿',
+                        type: 'line',
+                        showBackground: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#eef683'},
+                                    {offset: 0.5, color: '#f0e518'},
+                                    {offset: 1, color: '#f0cc18'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#f7c923'},
+                                        {offset: 0.7, color: '#f7bb23'},
+                                        {offset: 1, color: '#f6eb83'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    },
+                     {
+                        name:'第四意愿',
+                        type: 'line',
+                        showBackground: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#838ff6'},
+                                    {offset: 0.5, color: '#1823f0'},
+                                    {offset: 1, color: '#182ef0'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2358f7'},
+                                        {offset: 0.7, color: '#235ff7'},
+                                        {offset: 1, color: '#83a4f6'}
+                                    ]
+                                )
+                            }
+                        },
+
+                    }
+                ]
+            };
+            Opt_chart7 && chart7.setOption(Opt_chart7);
+            $.ajax({
+					url: "/7_1",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chart7").addClass("chart-done");
+				}).done(function(data) {
+
+                    Opt_chart7.series[0].data=data.values
+                    chart7.setOption(Opt_chart7);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            $.ajax({
+					url: "/7_2",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chart7").addClass("chart-done");
+				}).done(function(data) {
+                    Opt_chart7.series[1].data=data.values
+                    chart7.setOption(Opt_chart7);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            $.ajax({
+					url: "/7_3",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chart7").addClass("chart-done");
+				}).done(function(data) {
+                    Opt_chart7.series[2].data=data.values
+                    chart7.setOption(Opt_chart7);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            $.ajax({
+					url: "/7_4",
+					dataType: "json",
+                    timeout:10000
+				}).done(function() {
+					$("#chart7").addClass("chart-done");
+				}).done(function(data) {
+				    Opt_chart7.xAxis.data=data.keys
+                    Opt_chart7.series[3].data=data.values
+                    chart7.setOption(Opt_chart7);
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+            /********** 浏览器窗口改变时，重置报表大小 ****************/
+				window.onresize = function() {
+					chart7.resize();
+				}
+
+        </script>
+        <script type="javascript">
+
+				/******************* 世界地图 ******************/
+				//初始化echarts实例
+                var chartl9_dataList=[{name: 'Afghanistan', value: 28397.812},
+                {name: 'Angola', value: 19549.124},
+                {name: 'Albania', value: 3150.143},
+                {name: 'United Arab Emirates', value: 8441.537},
+                ]
+				const chartl9 = echarts.init(document.getElementById("chartl9"));
+				const Opt_chartl9 = {
+				     tooltip: {
+                        formatter:function(params,ticket, callback){
+                            return params.seriesName+'<br />'+params.name+'：'+params.value
+                        }
+                    },
+                    visualMap: {
+                        show:true,
+                        min: 0,
+                        max: 1500,
+                        left:'left',
+                        top:'250px',
+                        textStyle:{fontsize:5,color:'#fff'},
+                        inRange: {
+                                    color: ['#e0ffff', '#069']
+                                },
+                        splitList:[{start:0,end:1},
+                                    {start:1,end:10},
+                                    {start:10,end:150},
+                                    {start:150,end:200},
+                                    {start:200}]
+
+                    },
+                 geo: {
+				        map: 'world',
+				        roam: true, //开启鼠标缩放和漫游
+				        zoom: 1, //地图缩放级别
+						selectedMode: false, //选中模式：single | multiple
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+						layoutCenter: ['50%', '50%'], //设置后left/right/top/bottom等属性无效
+						layoutSize: '100%', //保持地图宽高比
+				        label: {
+				            emphasis: {
+				                show: false
+				            }
+				        },
+				        itemStyle: {
+				            normal: {
+				                areaColor: '#101f32',
+				                borderWidth: 1.1,
+				                borderColor: '#43d0d6'
+				            },
+				            emphasis: {
+				                areaColor: '#004a99'
+				            }
+				        }
+				    },
+
+                    series: [
+                        {
+                            name: '有付费选座意愿的旅客人数',
+                            type: 'map',
+                            geoIndex: 0,
+                            data:chartl9_dataList
+                        }
+                    ]
+				};
+				chartl9.setOption(Opt_chartl9);
+                $.ajax({
+					url: "/l9",
+					dataType: "json",
+                    timeout:10000
+				}).done(function(data) {
+                    Opt_chartl9.series[0].data=data.data
+                    chartl9.setOption(Opt_chartl9)
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+
+				//浏览器窗口大小变化时，重置报表大小
+				$(window).resize(function() {
+					chartl9.resize();
+				});
+        </script>
+	</body>
+</html>

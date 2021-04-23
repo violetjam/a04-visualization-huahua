@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>A04旅客付费选座意愿识别可视化</title>
+		<link rel="stylesheet" type="text/css" href="static/css/app.css" />
+	</head>
+
+	<body class="bg01">
+		<header id="header">
+			<h3 class="header-title">A04旅客付费选座意愿识别可视化</h3>
+			<div class="header-info header-info-l">数据来源：赛题官网提供</div>
+			<div class="header-info header-info-r">数据日期：<span id="nowDate"></span></div>
+		</header>
+        <div id="container">
+			<div id="flexCon">
+                <div class="flex-row1">
+                    <div class="chart-wrapper">
+							<div class="chart-done">
+
+								<table class="data-t" style="margin-top: 30px;margin-left: auto;margin-right: auto">
+									<tr >
+                                        <td><h3 class="chart-title" style="font-size: 32px">统计数据</h3></td>
+										<th><img src="static/img/icon-01.png" /></th>
+										<td>
+											<p><span id="records">0</span></p>
+											<p>总记录数</p>
+										</td>
+										<th><img src="static/img/icon-05.png" /></th>
+										<td>
+											<p><span id="features">0</span></p>
+											<p>特征因子字段数</p>
+										</td>
+                                        <th><img src="static/img/icon-02.png" /></th>
+                                        <td>
+											<p><span id="selects">0</span></p>
+											<p>筛选字段数</p>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+				</div>
+
+			</div>
+		</div>
+        <div class="wrapper">
+			<div class="container-fluid">
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title">模型性能评价指标</h3>
+
+                                <table class="data-t data-t-2" style="margin-top: 10px;margin-left: auto;margin-right: auto">
+									<tr >
+                                        <td><h3 class="chart-title" style="font-size: 22px">准确度：</h3></td>
+										<th><img src="static/img/icon-06.png" /></th>
+										<td>
+											<p><span id="test_accuracy">0</span>%</p>
+											<p>测试集准确度</p>
+										</td>
+										<th><img src="static/img/icon-07.png" /></th>
+										<td>
+											<p><span id="practise_accuracy">0</span>%</p>
+											<p>训练集准确度</p>
+										</td>
+									</tr>
+								</table>
+								<div class="detailbox">
+
+
+
+									<table class="detail" style="margin-top: 5px;">
+										<caption>测试集详细评价指标</caption>
+										<tr>
+											<th>详细指标</th>
+											<th>precision</th>
+											<th>recall</th>
+											<th>score</th>
+											<th>support</th>
+										</tr>
+										<tr>
+											<td>无付费选座</td>
+											<td>0.39</td>
+											<td>0.76</td>
+											<td>0.51</td>
+											<td>2018</td>
+										</tr>
+										<tr>
+											<td>付费选座</td>
+											<td>0.88</td>
+											<td>0.59</td>
+											<td>0.71</td>
+											<td>5850</td>
+										</tr>
+										<tr>
+											<td>accuracy</td>
+											<td>/</td>
+											<td>/</td>
+											<td>0.63</td>
+											<td>7868</td>
+										</tr>
+										<tr>
+											<td>macro avg</td>
+											<td>0.63</td>
+											<td>0.67</td>
+											<td>0.61</td>
+											<td>7868</td>
+										</tr>
+										<tr>
+											<td>weighted avg</td>
+											<td>0.75</td>
+											<td>0.63</td>
+											<td>0.66</td>
+											<td>7868</td>
+										</tr>
+
+									</table>
+									<table class="detail" style="margin-top: 5px;">
+										<caption>训练集详细评价指标</caption>
+										<tr>
+											<th>详细指标</th>
+											<th>precision</th>
+											<th>recall</th>
+											<th>score</th>
+											<th>support</th>
+										</tr>
+										<tr>
+											<td>无付费选座</td>
+											<td>0.39</td>
+											<td>0.76</td>
+											<td>0.52</td>
+											<td>8113</td>
+										</tr>
+										<tr>
+											<td>付费选座</td>
+											<td>0.88</td>
+											<td>0.59</td>
+											<td>0.70</td>
+											<td>23357</td>
+										</tr>
+										<tr>
+											<td>accuracy</td>
+											<td>/</td>
+											<td>/</td>
+											<td>0.63</td>
+											<td>31470</td>
+										</tr>
+										<tr>
+											<td>macro avg</td>
+											<td>0.63</td>
+											<td>0.67</td>
+											<td>0.61</td>
+											<td>31470</td>
+										</tr>
+										<tr>
+											<td>weighted avg</td>
+											<td>0.75</td>
+											<td>0.63</td>
+											<td>0.66</td>
+											<td>31470</td>
+										</tr>
+									</table>
+								</div>
+
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+								<h3 class="chart-title">旅客名单按付费意愿程度排序图</h3>
+                                <div class="chart-div" id="chartr2">
+                                    <div class="chart-loader"><div class="loader"></div></div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">筛选出的特征因子</h3>
+                                <div class="chart-div" id="chartl3">
+                                    <div class="chart-loader"><div class="loader"></div></div>
+                                </div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+								<h3 class="chart-title">特征因子重要性排序图</h3>
+                                <div class="chart-div" id="chartr3">
+                                    <div class="chart-loader"><div class="loader"></div></div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row fill-h">
+					<div class="fill-h" style="width: 60%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<!-- 地图飞线 -->
+                                <h3 class="chart-title ">飞行航线图</h3>
+								<div class="fill-h" id="flyMap"></div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 40%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">目的地(seg_route_to)与付费选座意愿占比饼图</h3>
+								<div class="fill-h" id="chartr4"></div>
+							</div>
+						</div>
+                    </div>
+				</div>
+                <div class="row fill-h">
+					<div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">舱位(seg_cabin)与是否付费选座关系图</h3>
+								<div class="fill-h" id="chartl5"></div>
+							</div>
+						</div>
+                    </div>
+                    <div class="fill-h" style="width: 50%;float: left;">
+						<div class="fill-h">
+							<div class="xpanel">
+								<h3 class="chart-title ">舱位(seg_cabin)与付费选座意愿占比饼图</h3>
+								<div class="fill-h" id="chart5"></div>
+							</div>
+						</div>
+                    </div>
+				</div>
+                <div class="row fill-h">
+                     <div class="fill-h" style="width: 100%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+                                <h3 class="chart-title ">最近Y年优选座位次数(select_seat_cnt)与付费选座占比关系</h3>
+								<div class="fill-h" id="chart6"></div>
+							</div>
+						</div>
+					</div>
+                </div>
+                <div class="row fill-h">
+                     <div class="fill-h" style="width: 100%; float: left;">
+						<div class="fill-h ">
+							<div class="xpanel">
+                                <h3 class="chart-title ">最近3年常飞航线(pref_line)与付费选座占比关系</h3>
+								<div class="fill-h" id="chart7"></div>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+
+		</div>
+</div>
+
+		<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="static/js/countUp.min.js"></script>
+		<script type="text/javascript" src="static/js/echarts.min.js"></script>
+		<script type="text/javascript" src="static/js/echarts-map-world.js"></script>
+		<script type="text/javascript" src="static/js/echarts-map-china.js"></script>
+		<script type="text/javascript" src="static/js/echarts-theme-shine.js"></script>
+
+        <script type="text/javascript" src="static/js/getdate.js"></script>
+        <script type="text/javascript" src="static/js/getchart-r2.js"></script>
+        <script type="text/javascript" src="static/js/getchart-l3.js"></script>
+        <script type="text/javascript" src="static/js/getchart-r3.js"></script>
+        <script type="text/javascript" src="static/js/getchart-l4.js"></script>
+        <script type="text/javascript" src="static/js/getchart-r4.js"></script>
+        <script type="text/javascript" src="static/js/getchart-r5.js"></script>
+        <script type="text/javascript" src="static/js/getchart-l5.js"></script>
+        <script type="text/javascript" src="static/js/getchart-6.js"></script>
+        <script type="text/javascript" src="static/js/getchart-7.js"></script>
+	</body>
+</html>

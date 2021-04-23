@@ -1,0 +1,7 @@
+{
+	"count_records": 20972,
+	"count_features": 650,
+	"count_selects": 19,
+	"test_accuracy": 69.85,
+	"practise_accuracy": 69.47
+}
