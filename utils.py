@@ -32,7 +32,7 @@ class utils:
         elif chart=='map':
             sql="SELECT seg_route_to, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE seg_route_to <> 'NULL' GROUP BY seg_route_to;"
         elif chart=='5':
-            sql = "SELECT seg_cabin, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy,SUM(emd_lable2) as emdsum,COUNT(emd_lable2) as emdcount FROM data_features_selected WHERE seg_cabin <> 'NULL' GROUP BY seg_cabin;"
+            sql = "SELECT nation_name, (SUM(emd_lable2))*1000/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE (nation_name <> 'NULL') and nation_name <> '0'  GROUP BY nation_name HAVING occupy <>'0';"
         elif chart=='6_y2':
             sql="SELECT select_seat_cnt_y2, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE select_seat_cnt_y2 <> 'NULL' GROUP BY select_seat_cnt_y2;"
         elif chart=='6_y3':
@@ -45,8 +45,16 @@ class utils:
             sql="SELECT pref_line_y3_3, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE pref_line_y3_3 <> '0' GROUP BY pref_line_y3_3 HAVING occupy <> 'Null';"
         elif chart=='7_4':
             sql="SELECT pref_line_y3_4, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE pref_line_y3_4 <> '0' GROUP BY pref_line_y3_4 HAVING occupy <> 'Null';"
+        elif chart=='8_2':
+            sql="SELECT pref_city_y3_2, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE (pref_city_y3_2 <> 'NULL') AND (pref_city_y3_2<>'0') GROUP BY pref_city_y3_2 HAVING occupy <> '0';"
+        elif chart=='8_3':
+            sql="SELECT pref_city_y3_3, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE (pref_city_y3_3 <> 'NULL') AND (pref_city_y3_3<>'0') GROUP BY pref_city_y3_3 HAVING occupy <> '0';"
+        elif chart=='8_4':
+            sql="SELECT pref_city_y3_4, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE (pref_city_y3_4 <> 'NULL') AND (pref_city_y3_4<>'0') GROUP BY pref_city_y3_4 HAVING occupy <> '0';"
         elif chart=='l9':
-            sql=""
+            sql="SELECT pref_orig_city_y3, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE (pref_orig_city_y3 <> 'NULL') AND (pref_orig_city_y3<>'0') GROUP BY pref_orig_city_y3 HAVING occupy <> '0';"
+        elif chart=='r9':
+            sql="SELECT pref_dest_city_y3, (SUM(emd_lable2))/COUNT(emd_lable2) as occupy FROM data_features_selected WHERE (pref_dest_city_y3 <> 'NULL') AND (pref_dest_city_y3<>'0') GROUP BY pref_dest_city_y3 HAVING occupy <> '0';"
         dict = pd.read_sql(sql, con=conn)
         return dict
 
@@ -82,7 +90,7 @@ class utils:
         dict = {}
         df = self.data
         df = df.sort_values(by='occupy', ascending=False)
-        for p, v in zip(df.seg_cabin, df.occupy):
+        for p, v in zip(df.nation_name, df.occupy):
             dict[p] = v
         return dict
     def get_l5_data1(self):
@@ -137,21 +145,45 @@ class utils:
         for p, v in zip(df.pref_line_y3_4, df.occupy):
             dict[p] = v
         return dict
-
+    def get_8_2_data(self):
+        dict = {}
+        df = self.data
+        for p, v in zip(df.pref_city_y3_2, df.occupy):
+            dict[p] = v
+        return dict
+    def get_8_3_data(self):
+        dict = {}
+        df = self.data
+        for p, v in zip(df.pref_city_y3_3, df.occupy):
+            dict[p] = v
+        return dict
+    def get_8_4_data(self):
+        dict = {}
+        df = self.data
+        for p, v in zip(df.pref_city_y3_4, df.occupy):
+            dict[p] = v
+        return dict
     def get_l9_data(self):
         dict = {}
         df = self.data
-        df = df.sort_values(by='select_seat_cnt_y3', ascending=True)
-        for p, v in zip(df.select_seat_cnt_y3, df.occupy):
+        for p, v in zip(df.pref_orig_city_y3, df.occupy):
+            dict[p] = v
+        return dict
+    def get_r9_data(self):
+        dict = {}
+        df = self.data
+        for p, v in zip(df.pref_dest_city_y3, df.occupy):
             dict[p] = v
         return dict
 
 
+
 if __name__=="__main__":
     # u=utils("a04","features_relevance_all","root","Tangsoub101",'l3')
-    # u = utils("a04", "data_features_selected", "root", "Tangsoub101", '7_1')
+    u = utils("a04", "data_features_selected", "root", "Tangsoub101", '8_4')
     # u = utils("a04", "features_relevance_all", "root", "Tangsoub101", 'r3')
-    u = utils("a04", "willingness_to_pay_sorted", "root", "Tangsoub101", 'r2')
+    # u = utils("a04", "willingness_to_pay_sorted", "root", "Tangsoub101", 'r2')
     # print(list(u.get_r2_data()))
     # print(list(u.get_r2_data().keys()))
-    print(list(u.get_r2_data().values()))
+    print(list(u.get_8_4_data().values()))
+    print(list(u.get_8_4_data().keys()))
