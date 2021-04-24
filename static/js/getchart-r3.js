@@ -10,14 +10,14 @@ const Opt_chartr3 = {
       yAxisIndex: [0], //设置组件控制的y轴
       left: "96%", //距离左侧的距离 可以使百分比，也可以是像素 left: '30'（30像素）
       start: -2,
-      end: 5,
+      end: 50,
     },
     //4.在内部可以纵向拖动
     {
       type: "inside",
       yAxisIndex: [0],
       start: -2,
-      end: 5,
+      end: 50,
     },
   ],
   tooltip: {

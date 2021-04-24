@@ -54,7 +54,7 @@ class utils:
         dict={}
         df=self.data
         df = df.sort_values(by='will', ascending=False)
-        for p,v in zip(df.pax_name,df.will):
+        for p,v, in zip(df.pax_name,df.will):
             dict[p]=v
         return dict
     def get_r3_data(self):
@@ -67,7 +67,7 @@ class utils:
     def get_l3_data(self):
         dict={}
         df=self.data
-        df = df.sort_values(by='relevance', ascending=False)[:19]
+        df = df.sort_values(by='relevance', ascending=False)[:15]
         for p,v in zip(df.feature,df.relevance):
             dict[p]=v
         return dict
@@ -149,8 +149,9 @@ class utils:
 
 if __name__=="__main__":
     # u=utils("a04","features_relevance_all","root","Tangsoub101",'l3')
-    u = utils("a04", "data_features_selected", "root", "Tangsoub101", '7_1')
+    # u = utils("a04", "data_features_selected", "root", "Tangsoub101", '7_1')
     # u = utils("a04", "features_relevance_all", "root", "Tangsoub101", 'r3')
-    # u = utils("a04", "feature", "root", "Tangsoub101", '6_y3')
-    print(list(u.get_7_1_data().keys()))
-    print(list(u.get_7_1_data().values()))
+    u = utils("a04", "willingness_to_pay_sorted", "root", "Tangsoub101", 'r2')
+    # print(list(u.get_r2_data()))
+    # print(list(u.get_r2_data().keys()))
+    print(list(u.get_r2_data().values()))

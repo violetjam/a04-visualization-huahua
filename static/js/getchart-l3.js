@@ -98,7 +98,7 @@ $.ajax({
       },
       series: [
         {
-          name: "相关度",
+          name: "重要性",
           data: data.values,
         },
       ],
